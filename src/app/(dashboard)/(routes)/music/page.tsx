@@ -81,7 +81,7 @@ export default function MusicPage() {
         {isLoading && <Loader />}
         {!music && !isLoading && <Empty description="No music generated." />}
         {music && (
-          <audio controls className="mt-8 w-full">
+          <audio controls className="mt-4 lg:mt-6 w-full">
             <source src={music} />
           </audio>
         )}

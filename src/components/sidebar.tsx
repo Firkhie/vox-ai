@@ -15,6 +15,11 @@ import {
   Settings,
   VideoIcon,
 } from "lucide-react";
+import ApiLimitCounter from "./api-limit-counter";
+
+interface SidebarProps {
+  userApiLimit: number;
+}
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 const contents = [
@@ -61,7 +66,7 @@ const contents = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ userApiLimit = 0 }: SidebarProps) {
   const pathname = usePathname();
   return (
     <div className="flex h-full flex-col justify-between bg-gradient-to-br from-[#171f41] to-[#01050c] px-4 py-5 text-white">
@@ -92,7 +97,9 @@ export default function Sidebar() {
           ))}
         </div>
       </div>
-      <div>INI COUNTER</div>
+      <div>
+        <ApiLimitCounter userApiLimit={userApiLimit} />
+      </div>
     </div>
   );
 }

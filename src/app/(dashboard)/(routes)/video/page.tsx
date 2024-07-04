@@ -83,7 +83,7 @@ export default function VideoPage() {
         {!video && !isLoading && <Empty description="No video generated." />}
         {video && (
           <video
-            className="mt-8 aspect-video w-full rounded-lg border bg-black"
+            className="mt-4 lg:mt-6 aspect-video w-full rounded-lg border bg-black"
             controls
           >
             <source src={video} />
