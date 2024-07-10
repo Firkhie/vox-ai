@@ -19,8 +19,11 @@ import Loader from "@/components/loader";
 import Empty from "@/components/empty";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 export default function ConversationPage() {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<MessageParam[]>([]);
 
@@ -45,7 +48,11 @@ export default function ConversationPage() {
       setMessages((current) => [...current, userMessage, response.data]);
       form.reset();
     } catch (error: any) {
-      console.log("[SUBMIT_ERROR]", error);
+      if (error.response.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
+      }
     } finally {
       router.refresh();
     }

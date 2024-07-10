@@ -15,8 +15,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Loader from "@/components/loader";
 import Empty from "@/components/empty";
+import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 export default function VideoPage() {
+  const proModal = useProModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
 
@@ -31,11 +34,14 @@ export default function VideoPage() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await axios.post("/api/video", values);
-      console.log("[VIDEO RESULT]", response);
       setVideo(response.data);
       form.reset();
     } catch (error: any) {
-      console.log("[SUBMIT_ERROR]", error);
+      if (error.response.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
+      }
     } finally {
       router.refresh();
     }
@@ -83,7 +89,7 @@ export default function VideoPage() {
         {!video && !isLoading && <Empty description="No video generated." />}
         {video && (
           <video
-            className="mt-4 lg:mt-6 aspect-video w-full rounded-lg border bg-black"
+            className="mt-4 aspect-video w-full rounded-lg border bg-black lg:mt-6"
             controls
           >
             <source src={video} />

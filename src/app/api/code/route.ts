@@ -1,4 +1,5 @@
 import { addApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 import Anthropic from "@anthropic-ai/sdk";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
@@ -27,8 +28,9 @@ export async function POST(req: Request) {
       return new NextResponse("Messages are required", { status: 400 });
     }
 
+    const isPro = await checkSubscription();
     const trialLimit = await checkApiLimit();
-    if (!trialLimit) {
+    if (!trialLimit && !isPro) {
       return new NextResponse("Free trial has expired", { status: 403 });
     }
 
@@ -38,7 +40,9 @@ export async function POST(req: Request) {
       model: "claude-3-haiku-20240307",
     });
 
-    await addApiLimit();
+    if (!isPro) {
+      await addApiLimit();
+    }
 
     const { text } = response.content[0] as MessageContent;
     return NextResponse.json({

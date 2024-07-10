@@ -55,7 +55,7 @@ export default function DashboardPage() {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div className="mb-10 space-y-2">
         <h2 className="text-center text-2xl font-bold md:text-4xl">
           Discover the Potential of AI
@@ -64,7 +64,7 @@ export default function DashboardPage() {
           Engage with the most intelligent AI - Unleash the capabilities of AI
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {contents.map((content) => (
           <Card
             onClick={() => router.push(content.href)}
@@ -85,7 +85,7 @@ export default function DashboardPage() {
                 )}
               >
                 <content.icon
-                  className={cn("h-24 w-24 xl:h-28 xl:w-28", content.color)}
+                  className={cn("h-24 w-24 xl:h-32 xl:w-32", content.color)}
                 />
               </div>
             </div>
