@@ -84,7 +84,7 @@ export default function Sidebar({
               montserrat.className,
             )}
           >
-            VoxAI
+            <span className="text-[#874fe1]">Vox</span>AI
           </h1>
         </Link>
         <hr className="my-7 h-0.5 border-none bg-white/20" />

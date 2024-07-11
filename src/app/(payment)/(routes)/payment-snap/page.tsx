@@ -29,7 +29,7 @@ export default function PaymentPage() {
       if (window.snap && token) {
         toast(
           (t) => (
-            <span className="flex gap-2">
+            <span className="flex gap-2 text-sm">
               <span>
                 Use this{" "}
                 <a
@@ -39,9 +39,9 @@ export default function PaymentPage() {
                 >
                   link here
                 </a>{" "}
-                to get &quot;Test Payment&quot; credentials.
+                to get <b>Test Payment</b> credentials.
               </span>
-              <Button variant="destructive" onClick={() => toast.dismiss(t.id)}>
+              <Button variant="destructive" size="sm" onClick={() => toast.dismiss(t.id)}>
                 <CircleX />
               </Button>
             </span>
