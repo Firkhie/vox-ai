@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { getApiLimit } from "@/lib/api-limit";
-import { checkSubscription, getSubscriptionDays } from "@/lib/subscription";
+import { checkSubscription } from "@/lib/subscription";
 
 interface Props {
   children: React.ReactNode;

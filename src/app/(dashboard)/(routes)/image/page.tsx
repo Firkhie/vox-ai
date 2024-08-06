@@ -103,7 +103,11 @@ export default function ImagePage() {
                   </SelectTrigger>
                   <SelectContent>
                     {amountOptions.map((item) => (
-                      <SelectItem value={item.value} key={item.label}>
+                      <SelectItem
+                        value={item.value}
+                        key={item.label}
+                        disabled={item.disabled}
+                      >
                         {item.label}
                       </SelectItem>
                     ))}
@@ -128,7 +132,11 @@ export default function ImagePage() {
                     </SelectTrigger>
                     <SelectContent>
                       {resolutionOptions.map((item) => (
-                        <SelectItem value={item.value} key={item.label}>
+                        <SelectItem
+                          value={item.value}
+                          key={item.label}
+                          disabled={item.disabled}
+                        >
                           {item.label}
                         </SelectItem>
                       ))}

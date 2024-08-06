@@ -118,9 +118,11 @@ export default function CodePage() {
               )}
             >
               {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-              <ReactMarkdown className="text-sm">
-                {String(message.content)}
-              </ReactMarkdown>
+              <div className="w-full overflow-hidden">
+                <ReactMarkdown className="text-sm overflow-auto">
+                  {String(message.content)}
+                </ReactMarkdown>
+              </div>
             </div>
           ))}
         </div>
