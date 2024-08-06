@@ -1,4 +1,5 @@
 <div align="center">
+  <p align="center"><img src="./public/logo.png" alt="Logo" width="200" height="200"></p>
   <h1 style="border: none;">VoxAI: An AI SaaS Platform</h1>
   <div>
     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
